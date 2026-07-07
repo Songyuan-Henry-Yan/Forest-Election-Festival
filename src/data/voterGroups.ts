@@ -1,0 +1,178 @@
+// The 10 animal household groups that make up the simulated voters.
+// Each group carries neighborhood tags (generation, pantry, roots, job
+// family) used by the Forest Neighborhood mixer, plus a kid-friendly
+// "needs" explanation of why they vote the way they do.
+
+import type { VoterGroup } from '../types/game';
+
+export const VOTER_GROUPS: VoterGroup[] = [
+  {
+    id: 'squirrels',
+    name: 'Squirrel Shopkeepers',
+    emoji: '🐿️',
+    description: 'Busy shopkeepers who trade nuts and count every acorn.',
+    cares: 'snack prices, budgets, free exchange, rewarding effort',
+    needs:
+      'They spent all autumn gathering and filling their shops, so they need fair trading rules and want hard work to stay worth it.',
+    axes: { freedom: 2, support: -2, change: 0, global: 1, nature: -1, services: -2, facts: 1, compromise: 0 },
+    issueIds: ['snackprices', 'budget', 'snackshare', 'bridge'],
+    tolerance: 0.5,
+    generation: 'grown',
+    pantry: 'full',
+    roots: 'deep',
+    jobFamily: 'builders',
+  },
+  {
+    id: 'mice',
+    name: 'Mouse Families',
+    emoji: '🐭',
+    description: 'Big families in small burrows who look out for each other.',
+    cares: 'the nurse station, basic snacks, safety',
+    needs:
+      'They have many little mouths to feed and small pantries, so they need the nurse station, shared snacks, and safe paths to school.',
+    axes: { freedom: -1, support: 3, change: 0, global: 0, nature: 0, services: 3, facts: 0, compromise: 1 },
+    issueIds: ['nurse', 'snackshare', 'safety', 'teachertime'],
+    tolerance: 0.55,
+    generation: 'grown',
+    pantry: 'small',
+    roots: 'deep',
+    jobFamily: 'helpers',
+  },
+  {
+    id: 'frogs',
+    name: 'Frog Environment Club',
+    emoji: '🐸',
+    description: 'Pond watchers who test the water and count the dragonflies.',
+    cares: 'the river, old trees, long-term environment',
+    needs:
+      'Their tadpoles grow up in the pond, so they need clean water and old shady trees — today and many summers from now.',
+    axes: { freedom: 0, support: 1, change: 1, global: 1, nature: 3, services: 1, facts: 2, compromise: 0 },
+    issueIds: ['river', 'robot', 'budget'],
+    tolerance: 0.5,
+    generation: 'young',
+    pantry: 'okay',
+    roots: 'deep',
+    jobFamily: 'checkers',
+  },
+  {
+    id: 'turtles',
+    name: 'Turtle Grandparents',
+    emoji: '🐢',
+    description: 'Wise elders who remember how the forest used to be.',
+    cares: 'rules, safety, tradition',
+    needs:
+      'They move slowly and remember old storms, so they need calm rules, safe paths, and changes that don’t happen all at once.',
+    axes: { freedom: -3, support: 0, change: -3, global: -1, nature: 0, services: 1, facts: 0, compromise: 0 },
+    issueIds: ['safety', 'homework', 'newanimals'],
+    tolerance: 0.45,
+    generation: 'elder',
+    pantry: 'okay',
+    roots: 'deep',
+    jobFamily: null,
+  },
+  {
+    id: 'bunnies',
+    name: 'Bunny Students',
+    emoji: '🐰',
+    description: 'Energetic students who love recess and new games.',
+    cares: 'homework, free time, playground fun',
+    needs:
+      'They are still growing and learning, so they need time to play, fun places to hop, and a say in their own tasks.',
+    axes: { freedom: 3, support: 1, change: 2, global: 1, nature: 1, services: 0, facts: -1, compromise: 0 },
+    issueIds: ['homework', 'robot', 'teachertime'],
+    tolerance: 0.6,
+    generation: 'young',
+    pantry: 'okay',
+    roots: 'deep',
+    jobFamily: null,
+  },
+  {
+    id: 'hedgehogs',
+    name: 'New Hedgehog Neighbors',
+    emoji: '🦔',
+    description: 'New families from the far meadow, excited and a little nervous.',
+    cares: 'joining the forest, school access, being welcomed',
+    needs:
+      'They just moved in and don’t know everyone yet, so they need a warm welcome, clear rules, and a seat in the classroom.',
+    axes: { freedom: 0, support: 2, change: 1, global: 3, nature: 0, services: 2, facts: 0, compromise: 1 },
+    issueIds: ['newanimals', 'teachertime', 'nurse'],
+    tolerance: 0.55,
+    generation: 'grown',
+    pantry: 'small',
+    roots: 'new',
+    jobFamily: 'helpers',
+  },
+  {
+    id: 'bees',
+    name: 'Bee Workers',
+    emoji: '🐝',
+    description: 'Hard workers who want effort rewarded and services that work.',
+    cares: 'effort being rewarded and public services being useful',
+    needs:
+      'They work every daylight hour, so they need their effort to count AND services that actually help when a wing gets tired.',
+    axes: { freedom: 0, support: 2, change: 0, global: 0, nature: 1, services: 2, facts: 1, compromise: 0 },
+    issueIds: ['snackshare', 'snackprices', 'nurse', 'budget'],
+    tolerance: 0.5,
+    generation: 'grown',
+    pantry: 'small',
+    roots: 'deep',
+    jobFamily: 'builders',
+  },
+  {
+    id: 'owls',
+    name: 'Owl Reporters',
+    emoji: '🦉',
+    description: 'Night-shift reporters who double-check every rumor.',
+    cares: 'facts, transparency, anti-rumor rules',
+    needs:
+      'Their job is telling the forest the truth, so they need open budget books, honest ads, and time to check every rumor.',
+    axes: { freedom: 0, support: 0, change: 0, global: 1, nature: 2, services: 0, facts: 3, compromise: 1 },
+    issueIds: ['robot', 'megaphone', 'budget', 'river'],
+    tolerance: 0.5,
+    generation: 'grown',
+    pantry: 'okay',
+    roots: 'deep',
+    jobFamily: 'checkers',
+  },
+  {
+    id: 'beavers',
+    name: 'Beaver Builders',
+    emoji: '🦫',
+    description: 'Builders who love a good blueprint and a balanced budget.',
+    cares: 'bridges, dams, budgets, long-term projects',
+    needs:
+      'They build the bridges and dams everyone uses, so they need sensible budgets and projects that get finished, not just promised.',
+    axes: { freedom: 0, support: -1, change: 0, global: 0, nature: -2, services: 1, facts: 2, compromise: 0 },
+    issueIds: ['budget', 'bridge', 'river'],
+    tolerance: 0.5,
+    generation: 'grown',
+    pantry: 'full',
+    roots: 'deep',
+    jobFamily: 'builders',
+  },
+  {
+    id: 'deer',
+    name: 'Deer Peace Team',
+    emoji: '🦌',
+    description: 'Gentle listeners who help neighbors get along.',
+    cares: 'listening, compromise, neighboring kingdoms, fewer fights',
+    needs:
+      'They calm arguments before they grow, so they need leaders who listen, share, and stay friendly with the meadow kingdom next door.',
+    axes: { freedom: 0, support: 1, change: 0, global: 2, nature: 1, services: 1, facts: 1, compromise: 3 },
+    issueIds: ['bridge', 'newanimals', 'safety', 'megaphone'],
+    tolerance: 0.65,
+    generation: 'grown',
+    pantry: 'okay',
+    roots: 'deep',
+    jobFamily: 'helpers',
+  },
+];
+
+export const JOB_FAMILY_INFO: Record<
+  NonNullable<VoterGroup['jobFamily']>,
+  { label: string; emoji: string }
+> = {
+  builders: { label: 'Builders & Traders', emoji: '🛠️' },
+  helpers: { label: 'Helpers & Caretakers', emoji: '🩹' },
+  checkers: { label: 'Fact-Checkers & Nature Watchers', emoji: '🔎' },
+};
