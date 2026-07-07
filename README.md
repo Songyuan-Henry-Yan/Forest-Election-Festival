@@ -201,3 +201,12 @@ election with the current candidates:
 - Ballot generation: `src/lib/generateBallots.ts`, `src/lib/generateGame.ts`.
 - Fixed teaching election: `src/data/sampleElection.ts`.
 - No analytics, no tracking, no network calls at runtime.
+
+## Copyright
+
+© 2026 Songyuan Yan. All rights reserved.
+
+Animal Kingdom Election Festival — including its code, artwork, characters,
+and text — was created as a nonpartisan educational project. If you would
+like to use it in your classroom or build on it, please reach out to the
+author.
