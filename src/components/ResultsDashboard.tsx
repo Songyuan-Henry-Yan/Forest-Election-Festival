@@ -17,19 +17,6 @@ function specialSummary(result: VotingResult, cname: (id: string) => string, vot
   return null;
 }
 
-
-const rewardNotes: Record<string, { rewarded: string; why: string }> = {
-  plurality: { rewarded: 'The biggest first-choice group.', why: 'Plurality rewarded the candidate with the biggest first-choice group.' },
-  irv: { rewarded: 'Backup support after transfers.', why: 'Ranked-choice rewarded a candidate who was a strong backup choice for many voters.' },
-  approval: { rewarded: 'Acceptability across groups.', why: 'Approval rewarded a candidate many voters found acceptable, even if fewer voters ranked them first.' },
-  score: { rewarded: 'Total star support.', why: 'Score voting rewarded the highest total or average rating.' },
-  condorcet: { rewarded: 'Head-to-head strength.', why: 'Pairwise comparison rewarded matchup wins against other candidates.' },
-  twoRound: { rewarded: 'Top-two runoff strength.', why: 'The runoff rewarded the finalist preferred by more voters.' },
-  star: { rewarded: 'Star strength plus finalist preference.', why: 'STAR rewarded high scores and the automatic runoff preference.' },
-  borda: { rewarded: 'Broad ranking points.', why: 'Borda rewarded candidates ranked higher across many ballots.' },
-  council: { rewarded: 'Proportional first-choice strength.', why: 'The council rule rewarded groups with enough first-choice support to earn seats.' }
-};
-
 const teacherNotes: Record<string, { formal: string; connection: string; prompt: string }> = {
   plurality: { formal: 'Single-Member Plurality', connection: 'A common choose-one rule for selecting one office holder.', prompt: 'What information is missing when only first choices count?' },
   twoRound: { formal: 'Majority Runoff / Two-Round System', connection: 'A majority-seeking rule that uses a second round between two finalists.', prompt: 'Who is left out when only the top two continue?' },
@@ -62,7 +49,7 @@ export function ResultsDashboard({ results, candidates, metrics, teacher = false
         </div>
       </div>
       <h3 className="same-ballots">Same voters. Same ballots. Different counting rules.</h3>
-      <p className="notice">Changing the counting rule can change the winner. {unique.length > 1 ? 'Look what happened! The voters stayed the same, and the ballots stayed the same, but different voting rules chose different winners.' : 'This time, many rules agreed on the same winner. Try changing the settings to see if the results change.'}</p>
+      <p className="notice">{unique.length > 1 ? 'Look what happened! The voters stayed the same, and the ballots stayed the same, but different voting rules chose different winners.' : 'This time, many rules agreed on the same winner. Try changing the settings to see if the results change.'}</p>
       <h3>Winner Badge Wall</h3>
       <div className="badge-wall">
         {results.map((result) => (
@@ -77,7 +64,7 @@ export function ResultsDashboard({ results, candidates, metrics, teacher = false
         {results.map((r) => <article className="card" key={r.systemId}><h3>{r.systemName}</h3><p className="winner">{r.systemId === 'council' ? 'Council seats assigned below' : `Winner: ${r.winnerIds.map(cname).join(', ')}`}</p><p>{r.explanationForKids}</p>{teacher && <div className="teacher"><p><b>Formal name:</b> {teacherNotes[r.systemId]?.formal ?? r.systemName}</p><p><b>Real-world connection:</b> {teacherNotes[r.systemId]?.connection}</p><p><b>Longer strengths:</b> {r.strengths.join('; ')}. This helps the class name what the rule values.</p><p><b>Longer weaknesses:</b> {r.weaknesses.join('; ')}. This helps the class notice tradeoffs.</p><p><b>Classroom prompt:</b> {teacherNotes[r.systemId]?.prompt}</p></div>}{specialSummary(r, cname, totalVoters)}<details><summary>Round-by-round details</summary>{r.rounds.map((rd, i) => <div key={i}><b>{rd.label}</b><p>{rd.details}</p>{rd.tallies && <pre>{JSON.stringify(Object.fromEntries(Object.entries(rd.tallies).map(([k, v]) => [cname(k), v])), null, 2)}</pre>}</div>)}<p>{r.tieBreakInfo}</p><p>Strengths: {r.strengths.join('; ')}</p><p>Weaknesses: {r.weaknesses.join('; ')}</p></details></article>)}
       </div>
       <h3>Winner comparison table</h3>
-      <table><thead><tr><th>Voting system</th><th>Winner or council result</th><th>What the system rewarded</th><th>Why this candidate won</th></tr></thead><tbody>{results.map((r) => <tr key={r.systemId}><td>{r.systemName}</td><td>{r.systemId === 'council' ? r.winnerIds.map((id, index) => `Seat ${index + 1}: ${cname(id)}`).join('; ') : r.winnerIds.map(cname).join(', ')}</td><td>{rewardNotes[r.systemId]?.rewarded}</td><td>{rewardNotes[r.systemId]?.why}</td></tr>)}</tbody></table>
+      <table><thead><tr><th>Voting system</th><th>Winner or council result</th></tr></thead><tbody>{results.map((r) => <tr key={r.systemId}><td>{r.systemName}</td><td>{r.systemId === 'council' ? r.winnerIds.map((id, index) => `Seat ${index + 1}: ${cname(id)}`).join('; ') : r.winnerIds.map(cname).join(', ')}</td></tr>)}</tbody></table>
       <h3>Candidate metric cards</h3>
       <div className="grid">{metrics.map((m) => { const c = candidate(m.candidateId)!; return <article className="card candidate" key={m.candidateId}><AnimalAvatar candidate={c} /><h4>{c.name}</h4><p>Favorite fans: {m.firstChoices}</p><p>Animals who say this candidate is okay: {Math.round(m.approvalRate * 100)}%</p><p>Average stars: {m.averageScore.toFixed(1)} / 5</p><p>Friendly matchup wins: {m.pairwiseWins}</p><p>Very unhappy voters: {m.veryUnhappy}</p></article>; })}</div>
     </section>
