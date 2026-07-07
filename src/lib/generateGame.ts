@@ -1,0 +1,3 @@
+import type { Election,Polarization } from '../types/game';
+import { candidates } from '../data/candidates'; import { issues } from '../data/issues'; import { voterGroups } from '../data/voterGroups'; import { generateBallots } from './generateBallots';
+export function generateGame(seed:number,polarization:Polarization='Medium',voterCount=120,selectedIssueIds?:string[]):Election{const selected=issues.filter(i=>(selectedIssueIds??issues.slice(0,6).map(x=>x.id)).includes(i.id));return {seed,voterCount,polarization,selectedIssueIds:selected.map(i=>i.id),candidates,ballots:generateBallots(seed,voterCount,polarization,candidates,voterGroups,selected)};}
