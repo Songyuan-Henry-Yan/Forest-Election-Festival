@@ -12,3 +12,71 @@ export const candidates:Candidate[]=[
 {id:'ella',name:'Ella Elephant',species:'Elephant',slogan:'Remember the past, plan for the future!',values:['memory','planning'],strengths:['Learns from history'],tradeoffs:['May protect old ways'],avatar:avatar('🐘','#cfd4da'),axis:{freedom:2,safety:4,care:4,fairness:3,change:2,tradition:5,environment:3,facts:4}},
 {id:'rocky',name:'Rocky Raccoon',species:'Raccoon',slogan:'If the old rules don’t work, let’s invent better ones!',values:['creativity','experiments'],strengths:['Invents new solutions'],tradeoffs:['Experiments do not always work'],avatar:avatar('🦝','#bfc0c0'),axis:{freedom:4,safety:2,care:3,fairness:3,change:5,tradition:1,environment:3,facts:3}}
 ];
+
+export const studentTeamCandidates: Candidate[] = [
+  {
+    id: 'team-owl',
+    name: 'Team Owl',
+    species: 'Owl',
+    slogan: 'Listen carefully, check the facts, then choose wisely!',
+    values: ['facts', 'listening', 'compromise'],
+    strengths: ['Good backup choice for many voters', 'Explains tradeoffs clearly'],
+    tradeoffs: ['Can seem too cautious or slow'],
+    avatar: '🦉',
+    axis: { freedom: 3, safety: 4, care: 3, fairness: 4, change: 3, tradition: 3, environment: 4, facts: 5 },
+    roleCard: 'Student team focused on evidence, listening, and balanced choices.',
+    perspective: 'Compromise and evidence'
+  },
+  {
+    id: 'team-fox',
+    name: 'Team Fox',
+    species: 'Fox',
+    slogan: 'More choices, more ideas, more forest freedom!',
+    values: ['freedom', 'creativity', 'local choice'],
+    strengths: ['Exciting first-choice support', 'Encourages new ideas'],
+    tradeoffs: ['Some voters may think the plans are risky'],
+    avatar: '🦊',
+    axis: { freedom: 5, safety: 2, care: 2, fairness: 3, change: 5, tradition: 1, environment: 2, facts: 3 },
+    roleCard: 'Student team focused on freedom, invention, and local choice.',
+    perspective: 'Freedom and invention'
+  },
+  {
+    id: 'team-turtle',
+    name: 'Team Turtle',
+    species: 'Turtle',
+    slogan: 'Move carefully, share fairly, protect the forest!',
+    values: ['fairness', 'nature', 'patience'],
+    strengths: ['Strong with fairness and environment voters', 'Thinks about smaller animals'],
+    tradeoffs: ['Some voters may think the plans move slowly'],
+    avatar: '🐢',
+    axis: { freedom: 2, safety: 4, care: 4, fairness: 5, change: 1, tradition: 4, environment: 5, facts: 4 },
+    roleCard: 'Student team focused on fairness, nature, and careful decisions.',
+    perspective: 'Nature protection and fairness'
+  },
+  {
+    id: 'team-bear',
+    name: 'Team Bear',
+    species: 'Bear',
+    slogan: 'Safe paths, strong bridges, and help when animals need it!',
+    values: ['safety', 'services', 'dependability'],
+    strengths: ['Broadly acceptable to many voters', 'Strong on safety and shared services'],
+    tradeoffs: ['May not be many voters’ most exciting first choice'],
+    avatar: '🐻',
+    axis: { freedom: 2, safety: 5, care: 4, fairness: 3, change: 2, tradition: 4, environment: 3, facts: 3 },
+    roleCard: 'Student team focused on safety, services, and dependable leadership.',
+    perspective: 'Safety and shared services'
+  },
+  {
+    id: 'team-monkey',
+    name: 'Team Monkey',
+    species: 'Monkey',
+    slogan: 'Let students speak, play, build, and celebrate together!',
+    values: ['fun', 'youth voice', 'creativity'],
+    strengths: ['Popular with playful voters', 'Makes the campaign energetic'],
+    tradeoffs: ['Some voters may worry about seriousness or budget'],
+    avatar: '🐒',
+    axis: { freedom: 4, safety: 2, care: 3, fairness: 3, change: 5, tradition: 1, environment: 3, facts: 2 },
+    roleCard: 'Student team focused on youth voice, festivals, and creativity.',
+    perspective: 'Youth voice and fun'
+  }
+];
